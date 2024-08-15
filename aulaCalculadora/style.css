@@ -1,0 +1,70 @@
+body {
+  background-color: black;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+}
+
+#app {
+  width: 200px;
+
+  padding: 5px;
+  padding-bottom: 10px;
+  background-color: #333;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calculadora {
+  width: 170px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.display {
+  width: 100%;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+}
+
+.linha {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin-bottom: 1px;
+}
+
+.botao {
+  width: 41px;
+  height: 41px;
+
+  border: none;
+  border-radius: 2px;
+
+  background-color: #4f2424;
+  color: white;
+}
+
+.botao:active {
+  background-color: #c23535;
+  transform: scale(1.05);
+}
+
+.operador {
+  background-color: rgba(166, 114, 1, 0.561);
+}
+.operador:active {
+  background-color: rgba(166, 114, 1, 0.8);
+}

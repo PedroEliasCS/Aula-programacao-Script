@@ -10,12 +10,12 @@
   <body>
     <div id="app" class="app">
       <div class="calculadora">
-        <div class="display">gaeg</div>
+        <button class="display" @click="lidarBotao('AC')">{{ display }}</button>
         <div class="linha">
-          <button class="botao">7</button>
-          <button class="botao">8</button>
-          <button class="botao">9</button>
-          <button class="botao operador">*</button>
+          <button class="botao" @click="lidarBotao('7')">7</button>
+          <button class="botao" @click="lidarBotao('8')">8</button>
+          <button class="botao" @click="lidarBotao('9')">9</button>
+          <button class="botao operador" @click="lidarBotao('*')">*</button>
         </div>
         <div class="linha">
           <button class="botao">4</button>
@@ -30,12 +30,13 @@
           <button class="botao operador">+</button>
         </div>
         <div class="linha">
-          <button class="botao">+/-</button>
-          <button class="botao">0</button>
           <button class="botao">.</button>
-          <button class="botao operador">=</button>
+          <button class="botao">0</button>
+          <button class="botao">=</button>
+          <button class="botao operador">/</button>
         </div>
       </div>
     </div>
+    <script src="./index.js"></script>
   </body>
 </html>

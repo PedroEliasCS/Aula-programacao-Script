@@ -53,5 +53,27 @@ createApp({
       this.numeroAtual = this.numeroAtual + numero;
       this.display = this.numeroAtual;
     },
+    lidarOperador(botao) {
+      this.numeroAnterior = this.numeroAtual;
+      this.operador = botao;
+      this.numeroAtual = "";
+      this.display = "";
+    },
+    lidarIgual() {
+      switch (this.operador) {
+        case "*":
+          this.display = this.numeroAnterior * this.numeroAtual;
+          return;
+        case "-":
+          this.display = this.numeroAnterior - this.numeroAtual;
+          return;
+        case "+":
+          this.display = this.numeroAnterior + this.numeroAtual;
+          return;
+        case "/":
+          this.display = this.numeroAnterior / this.numeroAtual;
+          return;
+      }
+    },
   },
 }).mount("#app");

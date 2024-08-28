@@ -41,6 +41,11 @@ body {
 
   color: #e9dddd;
 }
+.display:active {
+  border: 1px solid #e9dddd;
+  background-color: #4f2424;
+  border-radius: 10px;
+}
 
 .linha {
   width: 100%;
@@ -63,8 +68,7 @@ body {
 }
 
 .botao:active {
-  background-color: #c23535;
-  transform: scale(1.05);
+  animation: Clean 1s linear;
 }
 
 .operador {
@@ -72,4 +76,22 @@ body {
 }
 .operador:active {
   background-color: rgba(166, 114, 1, 0.8);
+}
+
+@keyframes Clean {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    background-color: #c23535;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.5;
+    background-color: #4f2424;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    background-color: #c23535;
+  }
 }

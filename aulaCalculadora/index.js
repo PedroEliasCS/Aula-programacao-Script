@@ -66,7 +66,7 @@ createApp({
         a2: this.numeroAtual,
       });
 
-      this.numeroAnterior = this.numeroAtual;
+      if (this.numeroAtual != "") this.numeroAnterior = this.numeroAtual;
       this.operador = botao;
       this.numeroAtual = "";
       this.display = `${this.numeroAnterior} ${this.operador}`;

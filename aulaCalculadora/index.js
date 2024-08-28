@@ -43,7 +43,7 @@ createApp({
     },
 
     lidarClean() {
-      this.display = "Clean";
+      this.display = "";
       this.numeroAtual = "";
       this.numerooAnterior = "";
       this.operador = null;
@@ -51,9 +51,21 @@ createApp({
 
     lidarNumero(numero) {
       this.numeroAtual = this.numeroAtual + numero;
-      this.display += this.numeroAtual;
+      this.display = `${this.numeroAnterior || ""} ${this.operador || ""} ${
+        this.numeroAtual
+      }`;
     },
     lidarOperador(botao) {
+      if (!!this.numeroAtual && !!this.numeroAnterior && !!this.operador) {
+        console.log("entrou");
+        this.lidarIgual();
+      }
+
+      console.log({
+        a1: this.numeroAnterior,
+        a2: this.numeroAtual,
+      });
+
       this.numeroAnterior = this.numeroAtual;
       this.operador = botao;
       this.numeroAtual = "";
@@ -63,17 +75,24 @@ createApp({
       switch (this.operador) {
         case "*":
           this.display = this.numeroAnterior * this.numeroAtual;
-          return;
+          break;
         case "-":
           this.display = this.numeroAnterior - this.numeroAtual;
-          return;
+          break;
         case "+":
-          this.display = this.numeroAnterior + this.numeroAtual;
-          return;
+          this.display = Number(this.numeroAnterior) + Number(this.numeroAtual);
+          break;
         case "/":
           this.display = this.numeroAnterior / this.numeroAtual;
-          return;
+          break;
       }
+
+      this.numeroAnterior = "";
+      this.numeroAtual = "";
+      this.operador = null;
+      this.numeroAtual = this.display;
+
+      console.log("Atual", this.numeroAtual);
     },
   },
 }).mount("#app");

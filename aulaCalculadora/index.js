@@ -51,13 +51,13 @@ createApp({
 
     lidarNumero(numero) {
       this.numeroAtual = this.numeroAtual + numero;
-      this.display = this.numeroAtual;
+      this.display += this.numeroAtual;
     },
     lidarOperador(botao) {
       this.numeroAnterior = this.numeroAtual;
       this.operador = botao;
       this.numeroAtual = "";
-      this.display = "";
+      this.display = `${this.numeroAnterior} ${this.operador}`;
     },
     lidarIgual() {
       switch (this.operador) {

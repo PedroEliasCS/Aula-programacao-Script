@@ -1,0 +1,21 @@
+button {
+  width: 100px;
+  height: 25px;
+  font-size: 20px;
+  margin: 10px;
+}
+
+.ligado {
+  background-color: #f00;
+  color: #fff;
+
+  width: 100px;
+  height: 100px;
+}
+
+.desligado {
+  background-color: #ccc;
+  color: #000;
+  width: 100px;
+  height: 100px;
+}

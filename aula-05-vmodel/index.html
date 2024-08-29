@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <h1>V model</h1>
+      <input type="text" v-model="nome" />
+      <h1 v-if="!nome">Olá, Fulado</h1>
+      <h1 v-else>Olá, {{nome}}</h1>
+
+      <br />
+
+      <button @click="onOff()">
+        <label v-if="!ligado">Ligar</label>
+        <label v-else>Desligar</label>
+      </button>
+
+      <p><div class="ligado" v-if="ligado"></div> <div class="desligado" v-else></div></p>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>

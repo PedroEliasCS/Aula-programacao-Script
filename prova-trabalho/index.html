@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prova -</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div>{{turn}}</div>
+      <div class="character">
+        <div class="life-bar" :style="{width: player.life + '%'}">
+          {{player.life}}/{{player.defaultLife}}
+        </div>
+        <div class="sprite">Desenho Personagem</div>
+        <h1>{{player.name}}</h1>
+        <div class="actions">
+          <button @click="atacar()">Atacar</button>
+          <button @click="defender()">Defender</button>
+          <button @click="usarPocao()">Usar Poção</button>
+          <button @click="fugir()">Correr</button>
+        </div>
+      </div>
+      <div class="display">{{display}}</div>
+      <div class="villain">
+        <div
+          class="life-bar"
+          :style="{width: ((enemy.life / enemy.defaultLife) * 100) + '%'}"
+        >
+          {{enemy.life}}/{{enemy.defaultLife}}
+        </div>
+        <div class="sprite">Desenho Personagem</div>
+        <h1>{{enemy.name}}</h1>
+        <div class="actions"></div>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>

@@ -6,7 +6,7 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 class Character {
   life = 0;
   turnDef = 0;
-  constructor(nameParam, lifeParam = 100, attackParam = 20, defenseParam = 5) {
+  constructor(nameParam, lifeParam = 100, attackParam = 20, defenseParam = 0) {
     this.name = nameParam;
     this.defaultLife = lifeParam;
     this.life = this.defaultLife;
@@ -23,23 +23,23 @@ class Character {
     // Para parar a execuçâo
   }
 
-  setDefense(turnAtual) {
+  setDefense(turnAtual, bonus = 0) {
     console.log("dentro");
     console.log(this.turnDef, turnAtual);
 
     if (this.turnDef <= turnAtual) {
       console.log("dae");
-      this.defenseStatus += 5;
+      this.defenseStatus += bonus;
     }
 
-    this.turnDef = turnAtual + 5;
+    this.turnDef = turnAtual + bonus;
 
     return "Defesa ativada";
   }
 
   getDefense(turnoAtual) {
     if (this.turnDef < turnoAtual) {
-      this.defenseStatus = 5;
+      this.defenseStatus = 0;
     }
 
     return this.defenseStatus;
@@ -88,7 +88,7 @@ class Player extends Character {
 
 class Enemy extends Character {
   constructor() {
-    super("Wesker", random(20, 100) + 50, random(1, 15) + 10, 7);
+    super("Wesker", random(20, 100) + 50, random(1, 15) + 10, 3);
   }
 
   villainAction(heroi, turnoAtual) {
@@ -98,7 +98,7 @@ class Enemy extends Character {
       case 0:
         return this.attackFunction(heroi, turnoAtual);
       case 1:
-        return this.setDefense(turnoAtual);
+        return this.setDefense(turnoAtual, 3);
       case 2:
         return this.usePotion(10);
     }
@@ -165,7 +165,7 @@ createApp({
       this.nextTurn();
     },
     async defender() {
-      this.display = this.player.setDefense(this.turn);
+      this.display = this.player.setDefense(this.turn, 5);
 
       this.nextTurn();
     },

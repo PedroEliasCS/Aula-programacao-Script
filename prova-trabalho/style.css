@@ -3,6 +3,7 @@
   --black: black;
   --gray: #453e3e;
   --violet: blueviolet;
+  --radius: 11px;
 }
 
 html,
@@ -12,7 +13,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(rgb(162, 250, 250), rgb(132, 97, 227));
+  background: var(--black);
   color: var(--black);
 }
 
@@ -27,7 +28,8 @@ body {
   background-color: var(--white);
   border: 2px solid var(--gray);
   padding: 10px;
-  border-radius: 5px;
+
+  border-radius: var(--radius);
   width: 400px;
   flex-direction: column;
 }
@@ -54,7 +56,8 @@ body {
   border: 2px solid var(--gray);
   margin-bottom: 20px;
   padding: 10px;
-  border-radius: 5px;
+
+  border-radius: var(--radius);
   width: 100%;
 }
 
@@ -67,7 +70,8 @@ body {
 .button {
   padding: 10px;
   border: none;
-  border-radius: 5px;
+
+  border-radius: var(--radius);
   background-color: var(--violet);
   color: var(--violet);
   cursor: pointer;
@@ -89,7 +93,8 @@ button:active {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
+
+  border-radius: var(--radius);
   margin-bottom: 10px;
 }
 
@@ -97,5 +102,6 @@ button:active {
   height: 100px;
   margin-bottom: 20px;
   background-color: #c1c1c1;
-  border-radius: 5px;
+
+  border-radius: var(--radius);
 }

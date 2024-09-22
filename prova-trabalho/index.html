@@ -14,7 +14,12 @@
         <div class="life-bar" :style="{width: player.life + '%'}">
           {{player.life}}/{{player.defaultLife}}
         </div>
-        <div class="sprite">Desenho Personagem</div>
+        <div class="sprite">
+          <div v-if="player.life >= (player.defaultLife * 1)">Vida cheia</div>
+          <div v-else-if="player.life > (player.defaultLife * 0.7)">70%</div>
+          <div v-else-if="player.life > (player.defaultLife * 0.3)">30%</div>
+          <div v-else>morto? quase</div>
+        </div>
         <h1>{{player.name}}</h1>
         <div class="actions">
           <button @click="atacar()">Atacar</button>
@@ -40,7 +45,12 @@
         >
           {{enemy.life}}/{{enemy.defaultLife}}
         </div>
-        <div class="sprite">Desenho Personagem</div>
+        <div class="sprite">
+          <div v-if="enemy.life >= (enemy.defaultLife * 1)">Vida cheia</div>
+          <div v-else-if="enemy.life > (enemy.defaultLife * 0.7)">70%</div>
+          <div v-else-if="enemy.life > (enemy.defaultLife * 0.3)">30%</div>
+          <div v-else>morto? quase</div>
+        </div>
         <h1>{{enemy.name}}</h1>
         <div>
           <span>

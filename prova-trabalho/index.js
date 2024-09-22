@@ -6,7 +6,7 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 class Character {
   life = 0;
   turnDef = 0;
-  constructor(nameParam, lifeParam = 100, attackParam = 10, defenseParam = 5) {
+  constructor(nameParam, lifeParam = 100, attackParam = 20, defenseParam = 5) {
     this.name = nameParam;
     this.defaultLife = lifeParam;
     this.life = this.defaultLife;
@@ -24,8 +24,12 @@ class Character {
   }
 
   setDefense(turnAtual) {
-    if (this.turnDef < turnAtual) {
-      this.defense += 5;
+    console.log("dentro");
+    console.log(this.turnDef, turnAtual);
+
+    if (this.turnDef <= turnAtual) {
+      console.log("dae");
+      this.defenseStatus += 5;
     }
 
     this.turnDef = turnAtual + 5;
@@ -35,7 +39,7 @@ class Character {
 
   getDefense(turnoAtual) {
     if (this.turnDef < turnoAtual) {
-      this.defenseStatus = 0;
+      this.defenseStatus = 5;
     }
 
     return this.defenseStatus;
@@ -45,10 +49,16 @@ class Character {
    * Ataca o combate
    */
   attackFunction = (player, turnoAtual) => {
-    const damage = random(1, this.attack) - player.getDefense(turnoAtual);
+    const damage = random(2, this.attack) - player.getDefense(turnoAtual);
+
+    if (damage <= 0) return `${this.name} atacou e teve um erro critico!`;
+
     player.life -= damage;
 
-    return `${this.name} atacou e casou ${damage} de dano`;
+    if (damage === this.attack)
+      return `${this.name} atacou e causou um dano critico de ${damage}`;
+
+    return `${this.name} atacou e causou ${damage} de dano`;
   };
 
   usePotion = (maxRestore = 25) => {
@@ -78,7 +88,7 @@ class Player extends Character {
 
 class Enemy extends Character {
   constructor() {
-    super("Wesker", 120, 15, 7);
+    super("Wesker", random(20, 100) + 50, random(1, 15) + 10, 7);
   }
 
   villainAction(heroi, turnoAtual) {
@@ -90,7 +100,7 @@ class Enemy extends Character {
       case 1:
         return this.setDefense(turnoAtual);
       case 2:
-        return this.usePotion();
+        return this.usePotion(10);
     }
   }
 }
@@ -115,17 +125,31 @@ createApp({
         enemy: this.enemy,
         turn: this.turn,
       });
+
+      if (this.player.life <= 0) alert("Você perdeu!");
+      else if (this.enemy.life <= 0) alert("Você ganhou!");
+
+      if (this.player.life <= 0 || this.enemy.life <= 0) {
+        if (confirm("Jogo acabou! Deseja reiniciar?")) {
+          location.reload();
+        }
+        throw new Error();
+      }
     },
 
     async nextTurn() {
+      this.check();
+
+      await delay(1500);
+
       this.turn++;
 
       this.display = "Turno do vilão";
-      await delay(1000);
+      await delay(1500);
 
       this.display = this.enemy.villainAction(this.player, this.turn);
 
-      await delay(1000);
+      await delay(2000);
 
       this.turn++;
 
@@ -141,17 +165,20 @@ createApp({
       this.nextTurn();
     },
     async defender() {
-      this.player.defense += 5;
+      this.display = this.player.setDefense(this.turn);
 
       this.nextTurn();
     },
     async usarPocao() {
-      this.player.usePotion();
+      this.display = this.player.usePotion();
 
       this.nextTurn();
     },
     async fugir() {
-      alert("fug");
+      if (confirm("Deseja fugir?")) {
+        alert("A luta vai ser reiniciada!");
+        location.reload();
+      }
 
       this.nextTurn();
     },

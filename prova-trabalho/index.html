@@ -18,7 +18,8 @@
           <div v-if="player.life >= (player.defaultLife * 1)">Vida cheia</div>
           <div v-else-if="player.life > (player.defaultLife * 0.7)">70%</div>
           <div v-else-if="player.life > (player.defaultLife * 0.3)">30%</div>
-          <div v-else>morto? quase</div>
+          <div v-else-if="player.life > 0">morto? quase</div>
+          <div v-else>morto</div>
         </div>
         <h1>{{player.name}}</h1>
         <div class="actions">
@@ -49,7 +50,8 @@
           <div v-if="enemy.life >= (enemy.defaultLife * 1)">Vida cheia</div>
           <div v-else-if="enemy.life > (enemy.defaultLife * 0.7)">70%</div>
           <div v-else-if="enemy.life > (enemy.defaultLife * 0.3)">30%</div>
-          <div v-else>morto? quase</div>
+          <div v-else-if="enemy.life > 0">morto? quase</div>
+          <div v-else>morto</div>
         </div>
         <h1>{{enemy.name}}</h1>
         <div>

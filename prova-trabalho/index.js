@@ -140,9 +140,8 @@ createApp({
     async nextTurn() {
       this.check();
 
-      await delay(1500);
-
       this.turn++;
+      await delay(1500);
 
       this.display = "Turno do vilão";
       await delay(1500);
@@ -158,23 +157,28 @@ createApp({
       this.display = "Seu turno!";
     },
     async atacar() {
-      this.display = this.player.attackFunction(this.enemy, this.turn);
+      console.log("tur: ", this.isTurnPlayer());
 
-      await delay(1500);
+      if (!this.isTurnPlayer()) return;
+
+      this.display = this.player.attackFunction(this.enemy, this.turn);
 
       this.nextTurn();
     },
     async defender() {
+      if (!this.isTurnPlayer()) return;
       this.display = this.player.setDefense(this.turn, 5);
 
       this.nextTurn();
     },
     async usarPocao() {
+      if (!this.isTurnPlayer()) return;
       this.display = this.player.usePotion();
 
       this.nextTurn();
     },
     async fugir() {
+      if (!this.isTurnPlayer()) return;
       if (confirm("Deseja fugir?")) {
         alert("A luta vai ser reiniciada!");
         location.reload();

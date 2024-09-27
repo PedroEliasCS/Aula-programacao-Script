@@ -15,11 +15,19 @@
           {{player.life}}/{{player.defaultLife}}
         </div>
         <div class="sprite">
-          <div v-if="player.life >= (player.defaultLife * 1)">Vida cheia</div>
-          <div v-else-if="player.life > (player.defaultLife * 0.7)">70%</div>
-          <div v-else-if="player.life > (player.defaultLife * 0.3)">30%</div>
-          <div v-else-if="player.life > 0">morto? quase</div>
-          <div v-else>morto</div>
+          <div v-if="player.life >= (player.defaultLife * 1)">
+            <img src="./img/leon vida cheia.png" />
+          </div>
+          <div v-else-if="player.life > (player.defaultLife * 0.7)">
+            <img src="./img/leon pouco dano.png" />
+          </div>
+          <div v-else-if="player.life > (player.defaultLife * 0.3)">
+            <img src="./img/leon muito dano.png" />
+          </div>
+          <div v-else-if="player.life > 0">
+            <img src="./img/leon quase morto.png" />
+          </div>
+          <div v-else><img src="./img/leon morto.png" /></div>
         </div>
         <h1>{{player.name}}</h1>
         <div class="actions">
@@ -30,8 +38,8 @@
         </div>
         <div>
           <span>
-            Defesa: {{player.getDefense()}} | Ataque: 2-{{player.attack}} |
-            Poçâo cura até: 25
+            Defesa: {{player.getDefense()}} | Ataque:
+            {{player.atkmin}}-{{player.attack}} | Poçâo cura até: 25
           </span>
         </div>
       </div>
@@ -47,17 +55,25 @@
           {{enemy.life}}/{{enemy.defaultLife}}
         </div>
         <div class="sprite">
-          <div v-if="enemy.life >= (enemy.defaultLife * 1)">Vida cheia</div>
-          <div v-else-if="enemy.life > (enemy.defaultLife * 0.7)">70%</div>
-          <div v-else-if="enemy.life > (enemy.defaultLife * 0.3)">30%</div>
-          <div v-else-if="enemy.life > 0">morto? quase</div>
-          <div v-else>morto</div>
+          <div v-if="enemy.life >= (enemy.defaultLife * 1)">
+            <img src="./img/namesis vida cheia.png" height="160px" />
+          </div>
+          <div v-else-if="enemy.life > (enemy.defaultLife * 0.7)">
+            <img src="./img/namesis pouco dano.png" height="160px" />
+          </div>
+          <div v-else-if="enemy.life > (enemy.defaultLife * 0.3)">
+            <img src="./img/namesis muito dano.png" height="160px" />
+          </div>
+          <div v-else-if="enemy.life > 0">
+            <img src="./img/namesis quase morto.png" height="160px" />
+          </div>
+          <div v-else><img src="./img/namesis morto.png" height="160px" /></div>
         </div>
         <h1>{{enemy.name}}</h1>
         <div>
           <span>
-            Defesa: {{enemy.getDefense()}} | Ataque: 2-{{enemy.attack}} | Poçâo
-            cura até: 10</span
+            Defesa: {{enemy.getDefense()}} | Ataque:
+            {{enemy.atkmin}}-{{enemy.attack}} | Poçâo cura até: 10</span
           >
         </div>
       </div>

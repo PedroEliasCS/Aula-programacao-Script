@@ -99,9 +99,13 @@ button:active {
 }
 
 .sprite {
-  height: 100px;
+  height: 110px;
   margin-bottom: 20px;
   background-color: #c1c1c1;
 
   border-radius: var(--radius);
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }

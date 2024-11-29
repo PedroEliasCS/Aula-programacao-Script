@@ -16,10 +16,10 @@ class Character {
   /**
    * Cria uma instância de um personagem com atributos de nome, vida, ataque e defesa.
    *
-   * @param {string} nameParam - O nome do personagem.
-   * @param {number} [lifeParam=100] - A quantidade de vida inicial do personagem. Padrão é 100.
-   * @param {number} [attackParam=35] - O valor de ataque do personagem. Padrão é 35.
-   * @param {number} [defenseParam=0] - O valor de defesa do personagem. Padrão é 0.
+   * @param {string} nameParam - Nome do personagem.
+   * @param {number} [lifeParam=100] - Vida inicial do personagem (padrão: 100).
+   * @param {number} [attackParam=35] - Valor de ataque do personagem (padrão: 35).
+   * @param {number} [defenseParam=0] - Valor de defesa do personagem (padrão: 0).
    */
   constructor(nameParam, lifeParam = 100, attackParam = 35, defenseParam = 0) {
     this.name = nameParam;
@@ -32,11 +32,10 @@ class Character {
 
   // Verifica o estado do personagem
   /**
-   * Verifica o estado do personagem.
-   * Se a vida do personagem for maior que 0, a função retorna.
-   * Caso contrário, exibe um alerta informando que o personagem está morto e lança um erro para parar a execução.
+   * Verifica se o personagem está vivo.
+   * Se a vida do personagem for menor ou igual a 0, exibe um alerta e lança um erro.
    *
-   * @throws {Error} Lança um erro para parar a execução se a vida do personagem for menor ou igual a 0.
+   * @throws {Error} Lança um erro se a vida do personagem for menor ou igual a 0.
    */
   checkState() {
     if (this.life > 0) return;
@@ -47,11 +46,11 @@ class Character {
 
   // Define a defesa do personagem
   /**
-   * Ativa a defesa do jogador no turno atual com um bônus opcional.
+   * Ativa a defesa do personagem no turno atual com um bônus opcional.
    *
-   * @param {number} turnAtual - O turno atual do jogo.
-   * @param {number} [bonus=0] - O bônus opcional a ser adicionado ao status de defesa.
-   * @returns {string} - Retorna uma mensagem indicando que a defesa foi ativada.
+   * @param {number} turnAtual - Turno atual do jogo.
+   * @param {number} [bonus=0] - Bônus opcional a ser adicionado ao status de defesa.
+   * @returns {string} - Mensagem indicando que a defesa foi ativada.
    */
   setDefense(turnAtual, bonus = 0) {
     if (this.turnDef <= turnAtual) {
@@ -64,9 +63,10 @@ class Character {
 
   // Obtém o status de defesa do personagem
   /**
-   * Recupera a defesa atual do personagem. com base no turno
-   * @param {*} turnoAtual
-   * @returns
+   * Recupera a defesa atual do personagem com base no turno.
+   *
+   * @param {number} turnoAtual - Turno atual do jogo.
+   * @returns {number} - Status de defesa do personagem.
    */
   getDefense(turnoAtual) {
     if (this.turnDef < turnoAtual) {
@@ -78,11 +78,11 @@ class Character {
 
   // Função de ataque do personagem
   /**
-   * Função de ataque que calcula o dano causado a um jogador.
+   * Calcula o dano causado a um jogador durante um ataque.
    *
-   * @param {Object} player - O jogador que receberá o ataque.
-   * @param {number} turnoAtual - O turno atual do jogo.
-   * @returns {string} - Uma mensagem descrevendo o resultado do ataque.
+   * @param {Object} player - Jogador que receberá o ataque.
+   * @param {number} turnoAtual - Turno atual do jogo.
+   * @returns {string} - Mensagem descrevendo o resultado do ataque.
    */
   attackFunction = (player, turnoAtual) => {
     const damage =
@@ -102,8 +102,8 @@ class Character {
   /**
    * Usa uma poção para restaurar a vida do personagem.
    *
-   * @param {number} [maxRestore=25] - O valor máximo de vida que a poção pode restaurar.
-   * @returns {string} - Uma mensagem indicando o resultado do uso da poção.
+   * @param {number} [maxRestore=25] - Valor máximo de vida que a poção pode restaurar.
+   * @returns {string} - Mensagem indicando o resultado do uso da poção.
    */
   usePotion = (maxRestore = 25) => {
     this.checkState();
@@ -147,7 +147,7 @@ class Player extends Character {
  * @extends {Character}
  *
  * @constructor
- * Cria uma instância de Enemy com nome "Wesker", vida e força aleatórias, e defesa fixa.
+ * Cria uma instância de Enemy com nome "Namesis", vida e força aleatórias, e defesa fixa.
  */
 class Enemy extends Character {
   constructor() {
@@ -158,9 +158,9 @@ class Enemy extends Character {
   /**
    * Executa uma ação aleatória do vilão durante o turno atual.
    *
-   * @param {Object} heroi - O objeto representando o herói.
-   * @param {number} turnoAtual - O número do turno atual.
-   * @returns {any} - O resultado da ação executada, que pode variar dependendo da ação.
+   * @param {Object} heroi - Objeto representando o herói.
+   * @param {number} turnoAtual - Número do turno atual.
+   * @returns {any} - Resultado da ação executada, que pode variar dependendo da ação.
    */
   villainAction(heroi, turnoAtual) {
     const randomAction = random(0, 2);
